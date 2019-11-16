@@ -1,0 +1,38 @@
+
+<h1 style="text-align:center">
+  Welcome to the Thumbnail Saver
+</h1>
+
+<div *ngIf="!executing; else Wait">
+  <p>Enter a directory to scan</p>
+  <input (keyup)="setvalidfalse()" #box />
+  <button (click)="checkvalid(box.value)">Test Directory</button>
+</div>
+
+<p>Directory Saved: {{valid}}</p>
+
+<div *ngIf="!executingimages; else Wait">
+  <button (click)="GetImages()">Display Images</button>
+</div>
+
+<div *ngIf="images">
+  <ul>
+    <li *ngFor="let imagestuff of images">
+      <p>
+        Image name:{{imagestuff[0]}}
+      </p>
+      <p>
+        Size: {{imagestuff[2]}} bytes
+      </p>
+      <img src="data:image/jpeg;base64,{{imagestuff[1]}}" />
+    </li>
+  </ul>
+</div>
+
+<ng-template #Wait>
+  <p>
+  Execution Taking Place, Please wait.
+  </p>
+</ng-template>
+
+
